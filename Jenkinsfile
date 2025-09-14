@@ -15,7 +15,7 @@ pipeline {
                '''
             }
         }
-        
+
         // stage('Testing Application') {
         //     steps {
         //         sh '''
@@ -34,7 +34,9 @@ pipeline {
         }
          stage('Build Container Application') {
             steps {
-                echo 'Build Container Application'
+                sh '''
+                docker compose up -d
+                '''
             }
         }
         stage('Publish Container Image') {
