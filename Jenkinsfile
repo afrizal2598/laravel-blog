@@ -7,7 +7,14 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/afrizal2598/laravel-blog.git'
             }
         }
-         stage('Testing Application') {
+        stage('Copy env variable') {
+            steps {
+               sh '''
+                cp /usr/share/nginx/html/laravel-blog/.env .env
+               '''
+            }
+        }
+        stage('Testing Application') {
             steps {
                 sh '''
                 composer install --dev --optimize-autoloader
